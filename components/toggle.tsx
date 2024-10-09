@@ -1,20 +1,25 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import toast, { Toaster } from "react-hot-toast";
 
 const Toggle = () => {
   const { theme, setTheme } = useTheme();
 
   const changeTheme = () => {
+    toast.dismiss();
     if (theme == "light") {
       setTheme("dark");
+      toast.success("Dark mode enabled");
     } else {
       setTheme("light");
+      toast.success("Light mode enabled");
     }
   };
 
   return (
     <div>
+      <Toaster />
       {theme == "dark" ? (
         <div>
           <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
