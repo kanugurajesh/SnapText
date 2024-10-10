@@ -34,7 +34,7 @@ const Profile = () => {
             onClick={() => setShow(!show)}
           />
           {show && (
-            <div className="bg-white absolute right-1 top-10 rounded-md shadow-sm shadow-gray-400">
+            <div className="bg-white absolute right-1 top-10 rounded-md shadow-sm shadow-gray-400 dark:text-black">
               <div className="p-3 pr-10">
                 <p className="font-semibold">{session.user.name}</p>
                 <p className="text-sm mt-[-2px]">{session.user.email}</p>

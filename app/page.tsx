@@ -1,6 +1,5 @@
 "use client";
 
-import Toggle from "@/components/toggle";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -12,9 +11,6 @@ export default function Home() {
 
   return (
     <main className="p-4">
-      <div className="float-right">
-        <Toggle />
-      </div>
       <div className="mt-24 flex flex-col items-center gap-7 justify-center w-full max-w-2xl mx-auto">
         <Link
           href=""

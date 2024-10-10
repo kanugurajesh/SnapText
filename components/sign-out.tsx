@@ -12,7 +12,7 @@ export default function SignOut() {
     <form onSubmit={handleSignIn}>
       <button
         type="submit"
-        className="bg-white text-black py-3 px-5 w-full font-semibold rounded-b-md hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white transition-all ease-in-out duration-300"
+        className="bg-white text-black py-3 px-5 w-full font-semibold rounded-b-md hover:bg-black hover:text-white transition-all ease-in-out duration-300"
       >
         Sign Out
       </button>

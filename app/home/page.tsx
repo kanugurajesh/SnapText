@@ -1,7 +1,9 @@
-import Profile from "@/components/profile";
-
 const Home = () => {
-  return <Profile />;
+  return (
+    <main>
+      <div>Home page</div>
+    </main>
+  );
 };
 
 export default Home;
