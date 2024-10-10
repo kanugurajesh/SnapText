@@ -15,7 +15,7 @@ export default function Home() {
       <div className="mt-24 flex flex-col items-center gap-7 justify-center w-full max-w-2xl mx-auto">
         <Link
           href=""
-          className="text-sm border border-black bg-black text-white rounded-full p-1 px-[20px] dark:bg-white font-semibold gap-2 flex items-center justify-center dark:text-black"
+          className="text-sm border border-black bg-black text-white rounded-full p-1 px-[20px] font-semibold gap-2 flex items-center justify-center dark:bg-white dark:text-black"
         >
           <span className="mb-[1px] leading-6">Watch Demo</span>
           <Image
@@ -47,7 +47,7 @@ export default function Home() {
             href=""
             className="bg-white text-black p-2 px-5 border-2 border-black rounded-full hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white transition-all ease-in-out duration-300"
           >
-            To App
+            SignIn
           </Link>
         </div>
       </div>
