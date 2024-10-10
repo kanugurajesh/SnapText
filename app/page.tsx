@@ -9,6 +9,7 @@ import data from "@/data/data";
 
 export default function Home() {
   const { theme } = useTheme();
+
   return (
     <main className="p-4">
       <div className="float-right">
