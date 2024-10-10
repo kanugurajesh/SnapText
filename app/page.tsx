@@ -4,6 +4,7 @@ import Toggle from "@/components/toggle";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import SignIn from "@/components/sign-in";
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
@@ -41,14 +42,9 @@ export default function Home() {
             href=""
             className="bg-black text-white p-2 px-5 border-black border-2 rounded-full hover:bg-white hover:text-black dark:bg-white dark:text-black transition-all ease-in-out duration-300"
           >
-            Github
+            Go to Github Repo
           </Link>
-          <Link
-            href=""
-            className="bg-white text-black p-2 px-5 border-2 border-black rounded-full hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white transition-all ease-in-out duration-300"
-          >
-            SignIn
-          </Link>
+          <SignIn />
         </div>
       </div>
     </main>
