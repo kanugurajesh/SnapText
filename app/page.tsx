@@ -5,9 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import SignIn from "@/components/sign-in";
+import data from "@/data/data";
 
 export default function Home() {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   return (
     <main className="p-4">
       <div className="float-right">
@@ -39,7 +40,7 @@ export default function Home() {
         </p>
         <div className="flex gap-4 font-semibold">
           <Link
-            href=""
+            href={data.github}
             className="bg-black text-white p-2 px-5 border-black border-2 rounded-full hover:bg-white hover:text-black dark:bg-white dark:text-black transition-all ease-in-out duration-300"
           >
             Go to Github Repo

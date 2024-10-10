@@ -1,11 +1,15 @@
 "use client"; // Ensure this component is rendered on the client-side
 
 import { signIn } from "next-auth/react"; // Ensure you import signIn correctly
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
+  const router = useRouter();
+
   const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent the default form submission
     await signIn("github");
+    router.push("/home");
   };
 
   return (
