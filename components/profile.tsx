@@ -4,16 +4,19 @@ import Image from "next/image";
 import { getSessionData } from "@/actions/getSession";
 import { useEffect, useState } from "react";
 import SignOut from "./sign-out";
+import { Session } from "@/types/types";
 
 const Profile = () => {
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [show, setShow] = useState(false);
 
   // use async await to get session data
   useEffect(() => {
     const fetchData = async () => {
       const res = await getSessionData();
-      setSession(res);
+      if (res && res.user) {
+        setSession(res as Session);
+      }
     };
     fetchData();
   }, []);

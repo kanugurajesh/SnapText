@@ -3,14 +3,17 @@
 import { signIn } from "next-auth/react"; // Ensure you import signIn correctly
 import { useState, useEffect } from "react";
 import { getSessionData } from "@/actions/getSession";
+import { Session } from "@/types/types";
 
 export default function SignIn() {
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await getSessionData();
-      setSession(res);
+      if (res && res.user) {
+        setSession(res as Session);
+      }
     };
     fetchData();
   }, []);
