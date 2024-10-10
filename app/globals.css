@@ -5,3 +5,9 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* slow background transition */
+
+body {
+  transition: background-color 0.5s ease;
+}
