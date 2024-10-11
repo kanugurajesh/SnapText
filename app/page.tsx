@@ -5,12 +5,20 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import SignIn from "@/components/sign-in";
 import data from "@/data/data";
+import Toggle from "@/components/toggle";
+import Profile from "@/components/profile";
 
 export default function Home() {
   const { theme } = useTheme();
 
   return (
     <main className="p-4">
+      <div className="p-4">
+        <div className="float-left">
+          <Toggle />
+        </div>
+        <Profile />
+      </div>
       <div className="mt-24 flex flex-col items-center gap-7 justify-center w-full max-w-2xl mx-auto">
         <Link
           href=""
