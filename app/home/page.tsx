@@ -10,7 +10,7 @@ const Home = () => {
   const [VideoId, setVideoId] = useState("");
   const [transcript, setTranscript] = useState("");
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (): Promise<void> => {
     // get Vid from the url
     if (url) {
       let rurl = url.replaceAll("https://", "");

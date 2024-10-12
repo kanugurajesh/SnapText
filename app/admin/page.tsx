@@ -3,8 +3,6 @@
 import { getSessionData } from "@/actions/getSession";
 import { Session } from "@/types/types";
 import { useEffect, useState } from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { solarizedlight } from "react-syntax-highlighter/dist/esm/styles/prism"; // You can change the theme
 import Image from "next/image";
 import { useTheme } from "next-themes";
 
@@ -21,9 +19,9 @@ const Admin = () => {
   }, []);
 
   return (
-    <main className="">
+    <main className="min-h-screen max-h-fit bg-gradient-to-r from-gray-400 to-gray-900">
       {sessionData ? (
-        <div className="rounded-md flex flex-col items-center justify-center gap-6">
+        <div className="rounded-md flex flex-col items-center justify-center gap-6 h-[120vh]">
           <h1 className="text-2xl font-bold">Admin Page</h1>
           <Image
             src={sessionData.user.image}
@@ -34,9 +32,9 @@ const Admin = () => {
               theme == "dark" ? "shadow-white" : "shadow-black"
             }`}
           />
-          <SyntaxHighlighter language="json" style={solarizedlight}>
-            {"Session Data: \n" + JSON.stringify(sessionData, null, 2)}
-          </SyntaxHighlighter>
+          <code className="max-w-64 mx-auto">
+            {JSON.stringify(sessionData)}
+          </code>
         </div>
       ) : (
         <p>Loading session data...</p>
