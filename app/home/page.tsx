@@ -51,13 +51,13 @@ const Home = () => {
         </div>
         <Profile />
       </div>
-      <main className="flex flex-col items-center justify-center mt-16 p-4 gap-4">
+      <main className="flex flex-col items-center justify-center mt-16 p-4 gap-8">
         <div className="flex gap-2">
           <input
             type="text"
             name=""
             id=""
-            className="rounded-md p-2 border-2 text-black border-black px-4 font-semibold placeholder:text-black tracking-wide focus:outline-offset-0 focus:ring-2 focus:ring-black focus:border-transparent dark:focus:ring-white"
+            className="rounded-md p-2 border-2 text-black border-black px-4 font-semibold placeholder:text-black tracking-wide focus:outline-offset-0 focus:ring-2 focus:ring-black focus:border-transparent dark:focus:ring-white dark:border-white dark:placeholder-black dark:text-black dark:bg-white"
             placeholder="Enter the Url"
             onChange={(e) => {
               console.log(e.target.value);
@@ -65,13 +65,13 @@ const Home = () => {
             }}
           />
           <button
-            className="p-2 bg-black border-l-2 border-t-2 border-black text-white rounded-md px-2 font-semibold hover:bg-white hover:text-black hover:shadow-lg transition-all ease-in-out duration-300 shadow-black"
+            className="p-2 bg-black border-l-2 border-t-2 border-black text-white rounded-md px-2 font-semibold hover:bg-white hover:text-black hover:shadow-lg hover:shadow-black transition-all ease-in-out duration-300 dark:border-white dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:shadow-white"
             onClick={handleSubmit}
           >
             Submit
           </button>
         </div>
-        <code className="shadow-sm shadow-black p-4 rounded-md">
+        <code className="shadow-sm shadow-black p-4 rounded-md dark:shadow-white dark:bg-white dark:text-black">
           {transcript
             ? transcript
             : "Transcription will appear here after submission"}
