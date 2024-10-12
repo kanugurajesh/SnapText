@@ -5,8 +5,6 @@ import Profile from "@/components/profile";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-// https://youtu.be/oMm8VzW3_lU
-
 const Home = () => {
   const [url, setUrl] = useState("");
   const [VideoId, setVideoId] = useState("");
@@ -59,7 +57,7 @@ const Home = () => {
             type="text"
             name=""
             id=""
-            className="rounded-md p-2 border-2 border-black px-4"
+            className="rounded-md p-2 border-2 text-black border-black px-4 font-semibold placeholder:text-black tracking-wide focus:outline-offset-0 focus:ring-2 focus:ring-black focus:border-transparent dark:focus:ring-white"
             placeholder="Enter the Url"
             onChange={(e) => {
               console.log(e.target.value);
@@ -67,7 +65,7 @@ const Home = () => {
             }}
           />
           <button
-            className="p-2 bg-black text-white rounded-md px-2 font-semibold"
+            className="p-2 bg-black border-l-2 border-t-2 border-black text-white rounded-md px-2 font-semibold hover:bg-white hover:text-black hover:shadow-lg transition-all ease-in-out duration-300 shadow-black"
             onClick={handleSubmit}
           >
             Submit
