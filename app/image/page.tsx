@@ -4,9 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
+import Loading from "@/components/loading";
 
 const Page = () => {
-
   const [src, setSrc] = useState<string>("");
   const [vid, setVid] = useState<string>("");
   const [lImage, setLImage] = useState<string>("");
@@ -27,6 +27,7 @@ const Page = () => {
     temp = temp.replaceAll("?feature=shared", "");
 
     setVid(temp);
+    toast.success("URL submitted successfully");
   };
 
   const handleThumbnails = () => {
@@ -35,6 +36,7 @@ const Page = () => {
       return;
     }
     getUrls(vid);
+    toast.success("Thumbnails fetched successfully");
   };
 
   const getUrls = async (vid: string) => {
@@ -54,14 +56,36 @@ const Page = () => {
       {lImage && (
         <div>
           <div className="fixed inset-0 bg-black opacity-50 z-10 pointer-events-auto" />
-          <Image
-            src={lImage}
-            width={300}
-            height={300}
-            alt="Large Image"
-            className="rounded-md sm:w-[540px] sm:h-[400px] absolute inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
-            onClick={() => setLImage("")}
-          />
+          <div className="rounded-md sm:w-[50vw] sm:h-[50vh] absolute inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+            <div className="w-full h-full">
+              <Image
+                src={lImage}
+                width={300}
+                height={200}
+                alt="Large Image"
+                className="rounded-md w-full h-full"
+              />
+              <button
+                className="p-2 w-10 h-10 bg-red-600 text-white flex items-center justify-center absolute top-0 right-0 hover:bg-red-700 transition-all ease-in-out duration-300"
+                onClick={() => setLImage("")}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18 18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       )}
       <div className="flex gap-2 items-center justify-center flex-col sm:flex-row">
@@ -84,7 +108,8 @@ const Page = () => {
           Get Thumbnails
         </button>
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-4">
+      <Loading />
+      {/* <div className="flex flex-wrap items-center justify-center gap-4">
         {urls.map((url, i) => (
           <div className="w-[300px] h-[300px] relative" key={i}>
             <Image
@@ -118,7 +143,7 @@ const Page = () => {
             </Link>
           </div>
         ))}
-      </div>
+      </div> */}
     </main>
   );
 };
