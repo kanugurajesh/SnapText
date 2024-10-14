@@ -5,7 +5,8 @@ import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 
-const page = () => {
+const Page = () => {
+
   const [src, setSrc] = useState<string>("");
   const [vid, setVid] = useState<string>("");
   const [lImage, setLImage] = useState<string>("");
@@ -122,4 +123,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -3,6 +3,7 @@
 import Toggle from "@/components/toggle";
 import Profile from "@/components/profile";
 import { useEffect, useState, useRef } from "react";
+import { JType } from "@/types/types";
 import toast from "react-hot-toast";
 
 const Home = () => {
@@ -32,9 +33,10 @@ const Home = () => {
 
   // The below function converts the json data to text data
   const JsonToText = (json: string): string => {
-    let data = JSON.parse(json);
+    const data = JSON.parse(json);
     let text = "";
-    data.forEach((element: any) => {
+    // element is of type json assign any type
+    data.forEach((element: JType) => {
       text += element.text + " ";
     });
     return text;
@@ -46,7 +48,7 @@ const Home = () => {
     if (url) {
       let rurl = url.replaceAll("https://", "");
       rurl = rurl.replace("?feature=shared", "");
-      let list = rurl.split("/");
+      const list = rurl.split("/");
       // check if the url is a valid youtube url
       if (list[0] !== "youtu.be") {
         toast.error("The link is not a valid youtube url");
