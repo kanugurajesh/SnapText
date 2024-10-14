@@ -85,7 +85,7 @@ const Page = () => {
             </div>
           </div>
         )}
-        <div className="flex gap-2 items-center justify-center flex-col sm:flex-row">
+        <div className="flex gap-2 items-center justify-center flex-col sm:flex-row mt-16">
           <input
             type="text"
             className="p-2 border-2 border-black rounded-md w-[300px] text-black font-semibold focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent bg-white"
