@@ -65,6 +65,7 @@ Enjoy a seamless experience with this powerful **YouTube transcription and thumb
 ![Screenshot 2024-10-14 174805](https://github.com/user-attachments/assets/8bc95796-4021-411d-bbc0-cdf925a54d2a)
 ![Screenshot 2024-10-14 174829](https://github.com/user-attachments/assets/1247aac1-4baf-40d0-98d0-6b5bcee57fe9)
 ![Screenshot 2024-10-14 174835](https://github.com/user-attachments/assets/ff2fff08-2e31-40d6-926c-3d9c486a8b21)
+![Screenshot 2024-10-14 180836](https://github.com/user-attachments/assets/4a2de420-1b45-4288-b085-834a48817497)
 ![Screenshot 2024-10-14 174925](https://github.com/user-attachments/assets/77a5eee3-d6a1-40a7-8569-0156798869b0)
 ![Screenshot 2024-10-14 174932](https://github.com/user-attachments/assets/5cc7d226-a167-4f8c-bf90-3ddbacacf448)
 ![Screenshot 2024-10-14 174937](https://github.com/user-attachments/assets/55cdda35-56d4-4c42-a6f8-535951df1cb0)
