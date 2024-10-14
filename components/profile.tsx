@@ -5,6 +5,7 @@ import { getSessionData } from "@/actions/getSession";
 import { useEffect, useState } from "react";
 import SignOut from "./sign-out";
 import { Session } from "@/types/types";
+import Link from "next/link";
 
 const Profile = () => {
   const [session, setSession] = useState<Session | null>(null);
@@ -39,6 +40,18 @@ const Profile = () => {
                 <p className="font-semibold">{session.user.name}</p>
                 <p className="text-sm mt-[-2px]">{session.user.email}</p>
               </div>
+              <Link
+                href="/admin"
+                className="py-2 flex items-center justify-center bg-gray-200 text-black rounded-md font-semibold hover:bg-black hover:text-white transition-all ease-in-out duration-300"
+              >
+                Admin
+              </Link>
+              <Link
+                href="/home"
+                className="py-2 flex items-center justify-center bg-gray-200 text-black rounded-md font-semibold hover:bg-black hover:text-white transition-all ease-in-out duration-300 my-2"
+              >
+                Home
+              </Link>
               <SignOut />
             </div>
           )}
