@@ -2,7 +2,7 @@
 
 import Toggle from "@/components/toggle";
 import Profile from "@/components/profile";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import toast from "react-hot-toast";
 
 const Home = () => {
@@ -12,12 +12,18 @@ const Home = () => {
   const [showText, setShowText] = useState<boolean>(true);
   const [showSubmit, setShowSubmit] = useState<boolean>(true);
   const [textData, setTextData] = useState<string>("");
+  const outputDivRef = useRef<HTMLDivElement>(null);
+  const outputPreRef = useRef<HTMLPreElement>(null);
 
   useEffect(() => {
     if (transcript) {
       setTextData(JsonToText(transcript));
     }
   });
+
+  // useEffect(() => {
+
+  // }, [textData]);
 
   const JsonToText = (json: string): string => {
     let data = JSON.parse(json);
@@ -64,6 +70,34 @@ const Home = () => {
 
       setUrl("");
       setTranscript(data.data);
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (showText) {
+      if (outputDivRef.current) {
+        outputDivRef.current.scrollTop = outputDivRef.current.scrollHeight;
+        outputDivRef.current.style.scrollBehavior = "smooth";
+      }
+    } else {
+      if (outputPreRef.current) {
+        outputPreRef.current.scrollTop = outputPreRef.current.scrollHeight;
+        outputPreRef.current.style.scrollBehavior = "smooth";
+      }
+    }
+  };
+
+  const scrollToTop = () => {
+    if (showText) {
+      if (outputDivRef.current) {
+        outputDivRef.current.scrollTop = 0;
+        outputDivRef.current.style.scrollBehavior = "smooth";
+      }
+    } else {
+      if (outputPreRef.current) {
+        outputPreRef.current.scrollTop = 0;
+        outputPreRef.current.style.scrollBehavior = "smooth";
+      }
     }
   };
 
@@ -135,12 +169,63 @@ const Home = () => {
               >
                 Json
               </div>
+              <div
+                className="p-2 rounded-md cursor-pointer transition-all ease-in-out duration-300 bg-black text-white hover:bg-gray-100 hover:text-black"
+                onClick={scrollToTop}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m4.5 18.75 7.5-7.5 7.5 7.5"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m4.5 12.75 7.5-7.5 7.5 7.5"
+                  />
+                </svg>
+              </div>
+              <div
+                className="p-2 rounded-md cursor-pointer transition-all ease-in-out duration-300 bg-black text-white hover:bg-gray-100 hover:text-black"
+                onClick={scrollToBottom}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
+                  />
+                </svg>
+              </div>
             </div>
             <div>
               {showText ? (
-                <div className="overflow-y-scroll max-h-[70vh]">{textData}</div>
+                <div
+                  className="overflow-y-scroll max-h-[70vh]"
+                  ref={outputDivRef}
+                >
+                  {textData}
+                </div>
               ) : (
-                <pre className="overflow-y-scroll max-h-[70vh] ">
+                <pre
+                  ref={outputPreRef}
+                  className="overflow-y-scroll max-h-[70vh]"
+                >
                   {JSON.stringify(JSON.parse(transcript), null, 2)}
                 </pre>
               )}
