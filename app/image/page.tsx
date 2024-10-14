@@ -56,7 +56,7 @@ const Page = () => {
       {lImage && (
         <div>
           <div className="fixed inset-0 bg-black opacity-50 z-10 pointer-events-auto" />
-          <div className="rounded-md sm:w-[50vw] sm:h-[50vh] absolute inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+          <div className="rounded-md w-[300px] h-[250px] sm:w-[500px] sm:h-[400px] absolute inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
             <div className="w-full h-full">
               <Image
                 src={lImage}
@@ -108,8 +108,7 @@ const Page = () => {
           Get Thumbnails
         </button>
       </div>
-      <Loading />
-      {/* <div className="flex flex-wrap items-center justify-center gap-4">
+      <div className="flex flex-wrap items-center justify-center gap-4">
         {urls.map((url, i) => (
           <div className="w-[300px] h-[300px] relative" key={i}>
             <Image
@@ -143,7 +142,7 @@ const Page = () => {
             </Link>
           </div>
         ))}
-      </div> */}
+      </div>
     </main>
   );
 };
