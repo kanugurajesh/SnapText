@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const Home = () => {
-
   const [url, setUrl] = useState<string>("");
   const [VideoId, setVideoId] = useState<string>("");
   const [transcript, setTranscript] = useState<string>("");
   const [showText, setShowText] = useState<boolean>(true);
+  const [showSubmit, setShowSubmit] = useState<boolean>(true);
   const [textData, setTextData] = useState<string>("");
 
   useEffect(() => {
@@ -39,9 +39,12 @@ const Home = () => {
         return;
       }
       setVideoId(list[1]);
-      toast.success("Video Id extracted successfully");
+      setTranscript("");
+      setShowSubmit(false);
     }
+  };
 
+  const handleTranscribe = async (): Promise<void> => {
     if (VideoId) {
       const res = await fetch("/api/transcribe", {
         method: "POST",
@@ -93,15 +96,20 @@ const Home = () => {
             className="rounded-md p-2 border-2 text-black border-black px-4 font-semibold placeholder:text-black tracking-wide focus:outline-offset-0 focus:ring-2 focus:ring-black focus:border-transparent dark:focus:ring-white dark:border-white dark:placeholder-black dark:text-black dark:bg-white"
             placeholder="Enter the Url"
             onChange={(e) => {
-              console.log(e.target.value);
               setUrl(e.target.value);
+              setShowSubmit(true);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSubmit();
+              }
             }}
           />
           <button
             className="p-2 bg-black border-l-2 border-t-2 border-black text-white rounded-md px-2 font-semibold hover:bg-white hover:text-black hover:shadow-lg hover:shadow-black transition-all ease-in-out duration-300 dark:border-white dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:shadow-white"
-            onClick={handleSubmit}
+            onClick={showSubmit ? handleSubmit : handleTranscribe}
           >
-            Submit
+            {showSubmit ? "Submit" : "Transcribe"}
           </button>
         </div>
         {transcript && (
@@ -129,10 +137,12 @@ const Home = () => {
               </div>
             </div>
             <div>
-              {showText && <p>{textData}</p>}
+              {showText && (
+                <div className="overflow-y-scroll max-h-[70vh]">{textData}</div>
+              )}
               {!showText && (
                 <pre
-                  className="overflow-auto"
+                  className="overflow-y-scroll"
                   style={{ maxHeight: "300px", maxWidth: "500px" }}
                 >
                   {JSON.stringify(JSON.parse(transcript), null, 2)}
