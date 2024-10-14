@@ -2,19 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import Toggle from "@/components/toggle";
 
 const Page = () => {
   const [src, setSrc] = useState<string>("");
   const [vid, setVid] = useState<string>("");
   const [lImage, setLImage] = useState<string>("");
-  const [urls, setUrls] = useState<string[]>([
-    "https://img.youtube.com/vi/PuOVqP_cjkE/0.jpg",
-    "https://img.youtube.com/vi/PuOVqP_cjkE/1.jpg",
-    "https://img.youtube.com/vi/PuOVqP_cjkE/2.jpg",
-    "https://img.youtube.com/vi/PuOVqP_cjkE/3.jpg",
-  ]);
+  const [urls, setUrls] = useState<string[]>([]);
 
   const handleSubmit = () => {
     if (!src.includes("youtu.be")) {
@@ -93,19 +88,19 @@ const Page = () => {
         <div className="flex gap-2 items-center justify-center flex-col sm:flex-row">
           <input
             type="text"
-            className="border-2 border-black rounded-md p-[6px] w-[300px] text-black font-semibold focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+            className="p-2 border-2 border-black rounded-md w-[300px] text-black font-semibold focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent bg-white"
             onChange={(e) => setSrc(e.target.value)}
             placeholder="Enter URL"
           />
           <button
             onClick={handleSubmit}
-            className="p-2 bg-black text-white rounded-md w-full border-black border-2 hover:bg-white hover:text-black transition-all ease-in-out duration-300 font-semibold"
+            className="p-2 bg-black text-white rounded-md w-full border-black border-2 hover:bg-white hover:text-black transition-all ease-in-out duration-300 font-semibold dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white"
           >
             Submit
           </button>
           <button
             onClick={handleThumbnails}
-            className="p-2 bg-black text-white rounded-md w-full border-black border-2 hover:bg-white hover:text-black transition-all ease-in-out duration-300 font-semibold"
+            className="p-2 bg-black text-white rounded-md w-full border-black border-2 hover:bg-white hover:text-black transition-all ease-in-out duration-300 font-semibold dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white"
           >
             Get Thumbnails
           </button>
