@@ -7,15 +7,9 @@ export async function POST(req: NextRequest) {
   try {
     const data = await YoutubeTranscript.fetchTranscript(
       `https://youtu.be/${Vid}?feature=shared`
-    ).then((transcript) => {
-      let data = "";
-      transcript.forEach((caption) => {
-        data += caption.text + " ";
-      });
+    ).then((data) => {
       return data;
     });
-
-    console.log(data);
 
     return NextResponse.json({ data: JSON.stringify(data) });
   } catch (error) {
@@ -24,7 +18,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     } else {
       console.log("An unknown error occurred");
-      return NextResponse.json({ error: "An unknown error occurred" }, { status: 500 });
+      return NextResponse.json(
+        { error: "An unknown error occurred" },
+        { status: 500 }
+      );
     }
   }
 }

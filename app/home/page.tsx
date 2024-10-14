@@ -2,13 +2,31 @@
 
 import Toggle from "@/components/toggle";
 import Profile from "@/components/profile";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const Home = () => {
-  const [url, setUrl] = useState("");
-  const [VideoId, setVideoId] = useState("");
-  const [transcript, setTranscript] = useState("");
+
+  const [url, setUrl] = useState<string>("");
+  const [VideoId, setVideoId] = useState<string>("");
+  const [transcript, setTranscript] = useState<string>("");
+  const [showText, setShowText] = useState<boolean>(true);
+  const [textData, setTextData] = useState<string>("");
+
+  useEffect(() => {
+    if (transcript) {
+      setTextData(JsonToText(transcript));
+    }
+  });
+
+  const JsonToText = (json: string): string => {
+    let data = JSON.parse(json);
+    let text = "";
+    data.forEach((element: any) => {
+      text += element.text + " ";
+    });
+    return text;
+  };
 
   const handleSubmit = async (): Promise<void> => {
     // get Vid from the url
@@ -21,26 +39,29 @@ const Home = () => {
         return;
       }
       setVideoId(list[1]);
+      toast.success("Video Id extracted successfully");
     }
 
-    const res = await fetch("/api/transcribe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ Vid: VideoId }),
-    });
+    if (VideoId) {
+      const res = await fetch("/api/transcribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ Vid: VideoId }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.ok) {
-      toast.success("Transcription successful");
-    } else {
-      toast.error("Transcription failed");
+      if (res.ok) {
+        toast.success("Transcription successful");
+      } else {
+        toast.error("Transcription failed");
+      }
+
+      setUrl("");
+      setTranscript(data.data);
     }
-
-    setUrl("");
-    setTranscript(data.data);
   };
 
   return (
@@ -52,6 +73,18 @@ const Home = () => {
         <Profile />
       </div>
       <main className="flex flex-col items-center justify-center mt-16 p-4 gap-8">
+        {VideoId && (
+          <iframe
+            width="300"
+            height="300"
+            src={`https://www.youtube.com/embed/${VideoId}`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="sm:w-[500px] sm:h-[300px] w-[300px] h-[300px] rounded-md shadow-md dark:shadow-white dark:bg-white"
+          ></iframe>
+        )}
         <div className="flex gap-2">
           <input
             type="text"
@@ -71,11 +104,43 @@ const Home = () => {
             Submit
           </button>
         </div>
-        <code className="shadow-sm shadow-black p-4 rounded-md dark:shadow-white dark:bg-white dark:text-black">
-          {transcript
-            ? transcript
-            : "Transcription will appear here after submission"}
-        </code>
+        {transcript && (
+          <code className="shadow-sm shadow-black p-4 rounded-md dark:shadow-white dark:bg-white dark:text-black flex flex-col gap-4">
+            <div className="flex gap-2 items-center justify-center">
+              <div
+                className={`p-2 rounded-md cursor-pointer transition-all ease-in-out duration-300 ${
+                  showText
+                    ? "bg-black text-white"
+                    : "hover:bg-gray-100 hover:text-black"
+                }`}
+                onClick={() => setShowText(true)}
+              >
+                Text
+              </div>
+              <div
+                className={`p-2 rounded-md cursor-pointer transition-all ease-in-out duration-300 ${
+                  !showText
+                    ? "bg-black text-white"
+                    : "hover:bg-gray-100 hover:text-black"
+                }`}
+                onClick={() => setShowText(false)}
+              >
+                Json
+              </div>
+            </div>
+            <div>
+              {showText && <p>{textData}</p>}
+              {!showText && (
+                <pre
+                  className="overflow-auto"
+                  style={{ maxHeight: "300px", maxWidth: "500px" }}
+                >
+                  {JSON.stringify(JSON.parse(transcript), null, 2)}
+                </pre>
+              )}
+            </div>
+          </code>
+        )}
       </main>
     </>
   );
