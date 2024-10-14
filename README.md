@@ -40,7 +40,7 @@ Enjoy a seamless experience with this powerful **YouTube transcription and thumb
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/Pic2Text.git
+   git clone https://github.com/yourusername/SnapText.git
    ```
 2. Change the directory
    ```bash
