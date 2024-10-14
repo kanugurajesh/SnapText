@@ -52,12 +52,12 @@ export default function Home() {
           the transcript and images. All functionalities crafted for seamless
           integration.
         </p>
-        <div className="flex gap-4 font-semibold">
+        <div className="flex gap-4 font-semibold flex-col min-[420px]:flex-row">
           <Link
-            href={data.github}
-            className="bg-black text-white p-2 px-5 border-black border-2 rounded-full hover:bg-white hover:text-black dark:bg-white dark:text-black transition-all ease-in-out duration-300"
+            href={"/image"}
+            className="bg-black text-white p-2 px-5 border-black border-2 rounded-full hover:bg-white hover:text-black dark:bg-white dark:text-black transition-all ease-in-out duration-300 text-center"
           >
-            Go to Github Repo
+            Go to Image (Free)
           </Link>
           <SignIn />
         </div>

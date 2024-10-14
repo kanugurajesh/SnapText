@@ -27,7 +27,7 @@ export default function SignIn() {
     <form onSubmit={handleSignIn}>
       <button
         type="submit"
-        className="bg-white text-black p-2 px-5 border-2 border-black rounded-full hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white transition-all ease-in-out duration-300"
+        className="bg-white text-black p-2 px-5 border-2 border-black rounded-full hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white transition-all ease-in-out duration-300 text-center"
       >
         {session ? `👋, ${session.user.name}` : "Sign in with GitHub"}
       </button>
