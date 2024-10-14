@@ -9,6 +9,7 @@ import Toggle from "@/components/toggle";
 import Profile from "@/components/profile";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { prism, oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import Loading from "@/components/loading";
 
 const Admin = () => {
   const [sessionData, setSessionData] = useState<Session | null>(null);
@@ -24,6 +25,14 @@ const Admin = () => {
 
   return (
     <main className="min-h-screen max-h-fit w-screen relative">
+      <div className="absolute top-4 left-4 z-20">
+        <Toggle />
+      </div>
+
+      <div className="absolute inset-0 top-4 right-4">
+        <Profile />
+      </div>
+
       {theme == "dark" ? (
         <div>
           <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
@@ -34,13 +43,8 @@ const Admin = () => {
         </div>
       )}
 
-      <div className="absolute top-4 w-screen p-4">
-        <Toggle />
-        <Profile />
-      </div>
-
       {sessionData ? (
-        <div className="rounded-md flex flex-col items-center justify-center gap-6">
+        <div className="rounded-md flex flex-col items-center justify-center gap-6 pt-16">
           <h1 className="text-2xl font-bold">Admin Page</h1>
           <Image
             src={sessionData.user.image}
@@ -61,7 +65,10 @@ const Admin = () => {
           </div>
         </div>
       ) : (
-        <p>Loading session data...</p>
+        <div className="flex flex-col items-center justify-center min-h-screen gap-4">
+          <Loading />
+          <h1 className="font-semibold text-lg">Loading the session.</h1>
+        </div>
       )}
     </main>
   );
