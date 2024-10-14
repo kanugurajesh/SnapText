@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import SignIn from "@/components/sign-in";
-import data from "@/data/data";
 import Toggle from "@/components/toggle";
 import Profile from "@/components/profile";
 
