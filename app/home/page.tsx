@@ -6,25 +6,31 @@ import { useEffect, useState, useRef } from "react";
 import toast from "react-hot-toast";
 
 const Home = () => {
+  // The below variable is used to store the complete url from the input
   const [url, setUrl] = useState<string>("");
+  // The below variable stores the video id from the url
   const [VideoId, setVideoId] = useState<string>("");
+  // The below variable stores the raw transcript data from the backend
   const [transcript, setTranscript] = useState<string>("");
+  // The below variable stores whether the user has to show the text or not
   const [showText, setShowText] = useState<boolean>(true);
+  // The below variable stores whether the user has to show the submit button or not
   const [showSubmit, setShowSubmit] = useState<boolean>(true);
+  // The below variable stores the text data from the json data
   const [textData, setTextData] = useState<string>("");
+  // The below variable stores the reference to the output div
   const outputDivRef = useRef<HTMLDivElement>(null);
+  // The below variable stores the reference to the output pre element
   const outputPreRef = useRef<HTMLPreElement>(null);
 
+  // The below function get called when the transcript data changes and it converts the json data to text data and stores it in the textData variable
   useEffect(() => {
     if (transcript) {
       setTextData(JsonToText(transcript));
     }
-  });
+  }, [transcript]);
 
-  // useEffect(() => {
-
-  // }, [textData]);
-
+  // The below function converts the json data to text data
   const JsonToText = (json: string): string => {
     let data = JSON.parse(json);
     let text = "";
@@ -34,24 +40,31 @@ const Home = () => {
     return text;
   };
 
+  // The below function gets called when the user submits the url
   const handleSubmit = async (): Promise<void> => {
     // get Vid from the url
     if (url) {
       let rurl = url.replaceAll("https://", "");
       rurl = rurl.replace("?feature=shared", "");
       let list = rurl.split("/");
+      // check if the url is a valid youtube url
       if (list[0] !== "youtu.be") {
         toast.error("The link is not a valid youtube url");
         return;
       }
+      // set the video id and reset the transcript and show submit
       setVideoId(list[1]);
+      // reset the transcript and show submit
       setTranscript("");
+      // reset the show submit
       setShowSubmit(false);
     }
   };
 
+  // The below function gets called when the user clicks on the transcribe button
   const handleTranscribe = async (): Promise<void> => {
     if (VideoId) {
+      // call the backend api to transcribe the video
       const res = await fetch("/api/transcribe", {
         method: "POST",
         headers: {
@@ -73,6 +86,7 @@ const Home = () => {
     }
   };
 
+  // The below function scrolls to the bottom of the output div
   const scrollToBottom = () => {
     if (showText) {
       if (outputDivRef.current) {
@@ -87,6 +101,7 @@ const Home = () => {
     }
   };
 
+  // The below function scrolls to the top of the output div
   const scrollToTop = () => {
     if (showText) {
       if (outputDivRef.current) {
@@ -122,7 +137,7 @@ const Home = () => {
             className="sm:w-[500px] sm:h-[300px] w-[300px] h-[300px] rounded-md shadow-md dark:shadow-white dark:bg-white"
           ></iframe>
         )}
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-col sm:flex-row">
           <input
             type="text"
             name=""
