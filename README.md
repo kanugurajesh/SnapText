@@ -31,3 +31,31 @@ Ready-to-use, simply paste the YouTube video link and easily download the transc
 4. **👤 Manage Profile**: Use the **profile page** to view your login session details or **sign out** via the **GitHub OAuth** integration.
 
 Enjoy a seamless experience with this powerful **YouTube transcription and thumbnail downloader** tool!
+
+---
+
+## 🚀 Quick Start
+
+### 📦 Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/Pic2Text.git
+   ```
+2. Change the directory
+   ```bash
+   cd Pic2Text
+   ```
+3. Install the packages
+   ```bash
+   npm install
+   ```
+4. Run the project
+   ```bash
+   npm run dev
+   ```
+   
+## 🧰 Tech Stack
+🖥️ **Frontend**: Next.js, TypeScript, Tailwind CSS  
+
+---
