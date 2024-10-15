@@ -76,6 +76,7 @@ Enjoy a seamless experience with this powerful **YouTube transcription and thumb
 ![Screenshot 2024-10-14 175039](https://github.com/user-attachments/assets/4d8e5731-5b68-428c-87b8-e2840a786dde)
 ![Screenshot 2024-10-14 175100](https://github.com/user-attachments/assets/2789e7fb-6438-48e7-81b0-9216218d8e2a)
 ![Screenshot 2024-10-15 141358](https://github.com/user-attachments/assets/8080a7f2-924b-4606-8bc2-9d6aa79d9837)
+![Screenshot 2024-10-15 224214](https://github.com/user-attachments/assets/05add2a5-af3f-4240-8de0-7241e71da482)
 
 ## Demo
 
